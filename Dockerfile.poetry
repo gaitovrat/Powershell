@@ -1,0 +1,9 @@
+FROM python:latest
+
+RUN python -m venv /venv
+RUN /venv/bin/pip install -U pip setuptools
+RUN /venv/bin/pip install poetry
+
+ENV PATH="/venv/bin:$PATH"
+
+ENTRYPOINT [ "/venv/bin/poetry" ]
