@@ -1,10 +1,10 @@
 function python {
     param(
-        [parameter(ValueFromRemainingArguments = $true)][string]$Arguments
+        [parameter(ValueFromRemainingArguments = $true)][string]$Arguments = ''
     )
-
+    $Arguments = $Arguments -join ' '
     $Arguments = $Arguments -replace '\\', '/'
-    docker run -it --rm -v ${PWD}:/app -w /app python python $Arguments
+    Invoke-Expression "docker run -it --rm -v ${PWD}:/app -w /app python python $Arguments"
 }
 
 function poetry {
